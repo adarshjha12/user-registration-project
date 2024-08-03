@@ -6,7 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     height: auto;
-    width: 100vw;
+    width: 95vw;
 }
 
 *{
@@ -16,10 +16,11 @@ body {
 }
 
 .container {
-    display: flex;
-    width: 50%;
+    /* display: flex; */
+    /* width: 50%; */
     height: auto;
-    background-color: #f65d04;
+    /* background-color: #f65d04; */
+    border: 2px solid yellow;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
@@ -28,7 +29,7 @@ body {
 
 .left-column, .right-column {
     padding: 20px;
-    width: 40%;
+    width: 50%;
     box-sizing: border-box;
 }
 
@@ -46,8 +47,16 @@ body {
     color: #FFD700; /* Yellow text */
 }
 
+.registration-form{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1rem;
+}
+
+
 .registration-form h2 {
-    margin-bottom: 20px;
+    margin: 20px 0;
+    text-align: center;
     color: #FFD700; /* Yellow text */
 }
 
@@ -59,7 +68,7 @@ body {
 
 .registration-form input {
     width: 100%;
-    padding: 10px;
+    padding: 6px;
     margin-bottom: 15px;
     border: 1px solid #FFD700; /* Yellow border */
     border-radius: 4px;
@@ -73,7 +82,7 @@ body {
 }
 
 .registration-form button {
-    width: 100%;
+    /* width: 100%; */
     padding: 10px;
     background-color: #FFD700; /* Yellow background */
     border: none;
@@ -81,8 +90,38 @@ body {
     color: #000000; /* Black text */
     font-size: 16px;
     cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+
+.button-div{
+    display: grid;
+    place-items: center;
 }
 
 .registration-form button:hover {
     background-color: #e6b800; /* Darker yellow */
+}
+
+input[type=date]{
+    background-color: #f65d04;
+}
+
+#grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 2rem;
+    gap: 1rem;
+}
+
+.texts{
+    padding: 1rem;
+    background-color: #FFD700;
+    text-align: center;
+}
+
+@media (width < 760px){
+    #grid{
+        grid-template-columns: 1fr;
+    }
 }
