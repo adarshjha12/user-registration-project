@@ -27,32 +27,11 @@ body {
     margin: 2rem 0;
 }
 
-.left-column, .right-column {
-    padding: 20px;
-    width: 50%;
-    box-sizing: border-box;
-}
-
-.left-column {
-    background-color: #FFD700; /* Yellow background */
-    color: #000000; /* Black text */
-}
-
-.left-column h2 {
-    margin-bottom: 20px;
-}
-
-.right-column {
-    background-color: #000000; /* Black background */
-    color: #FFD700; /* Yellow text */
-}
-
 .registration-form{
     display: flex;
     justify-content: center;
     padding-bottom: 1rem;
 }
-
 
 .registration-form h2 {
     margin: 20px 0;
@@ -74,11 +53,12 @@ body {
     border-radius: 4px;
     box-sizing: border-box;
     background-color: #1a1a1a; /* Darker background */
-    color: #FFD700; /* Yellow text */
+    color: #FFF; /* Yellow text */
 }
 
 .registration-form input::placeholder {
-    color: #FFD700; /* Yellow placeholder text */
+    color: #797877; /* Yellow placeholder text */
+    font-size: .8rem;
 }
 
 .registration-form button {
@@ -124,4 +104,18 @@ input[type=date]{
     #grid{
         grid-template-columns: 1fr;
     }
+}
+
+.gender-para{
+    color: #FFD700;
+    margin-bottom: 15px;
+}
+.section-radio{
+    display: flex;
+    gap: 1rem;
+}
+
+ input[type='radio']{
+    margin-bottom: 0;
+    width: 1rem;
 }
