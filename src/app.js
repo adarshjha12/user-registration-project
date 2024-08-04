@@ -6,6 +6,7 @@ const hbs = require('hbs')
 require('./dbConnection')
 const UserCollection = require('../models/schema')
 
+
 app.set('view engine', 'hbs')
 app.use(express.static(path.join(__dirname, '../public')))
 app.set('views', path.join(__dirname, '../templates/views'))
@@ -18,12 +19,13 @@ app.get('/', (req, res) =>{
 })
 
 app.post('/register', async (req, res) =>{
+    
       const password = req.body.password
         const confirmPassword = req.body.confirmPassword
         if (password === confirmPassword) {
             try {
         
-                const user1 = UserCollection({
+                const user1 = new UserCollection({
                    firstName: req.body.firstname,
                    lastName: req.body.lastname,
                    email: req.body.email,

@@ -12,7 +12,7 @@ let userSchema = new mongoose.Schema({
         email:{
             type: String,
             required: true,
-            unique: true
+            unique: [true, 'email already exists']
         },
         gender:{
             type: String,
@@ -36,6 +36,7 @@ let userSchema = new mongoose.Schema({
             required: true
         }
 })
+
 
 
 const UserCollection = mongoose.model('UserCollection', userSchema)
