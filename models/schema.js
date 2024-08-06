@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcryptjs')
 
 let userSchema = new mongoose.Schema({
         firstName:{
@@ -37,6 +38,25 @@ let userSchema = new mongoose.Schema({
         }
 })
 
+// adding security in password by hashing
+
+userSchema.pre('save', async function (next) {
+    console.log(`password is ${this.password}`);
+    
+    if (this.isModified('password' || this.isNew)) {
+        try {
+            this.password = await bcrypt.hash(this.password, 10)
+            console.log(`password is ${this.password}`);
+
+            this.confirmPassword = undefined
+            next()
+        } catch (error) {
+            next(error)
+        }
+    } else{
+       return next()
+    }
+})
 
 
 const UserCollection = mongoose.model('UserCollection', userSchema)
