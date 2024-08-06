@@ -18,6 +18,15 @@ app.get('/', (req, res) =>{
     res.render('index')
 })
 
+app.get('/register', (req, res) =>{
+    res.render('registerClient')
+})
+
+app.get('/login', (req, res) => {
+    res.render('login'); 
+});
+
+
 app.post('/register', async (req, res) =>{
     
       const password = req.body.password
@@ -39,8 +48,8 @@ app.post('/register', async (req, res) =>{
                console.log(userData);
                // console.log(req.body);
                
-               res.send('successful')
-           } catch (error) {
+               res.redirect('/login');
+            } catch (error) {
                console.log(error);   
                res.send('unsuccessful')
            }
@@ -48,6 +57,24 @@ app.post('/register', async (req, res) =>{
             res.send('<script>alert("password did not match"); window.location.href="/";</script>')
         }
 }   )
+
+
+app.post('/login', async (req, res) =>{
+    try {
+        let user = await UserCollection.findOne({email: req.body.email})
+        
+            if (user &&  user.password === req.body.password) {
+                res.redirect('index')
+            } else{
+                console.log('data did not match');
+                res.send('<script>alert("data did not match"); window.location.href="/login";</script>')
+            }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send('server error')
+        
+    }
+})
 
 app.listen(PORT, () =>{
     console.log(`app is running on ${PORT}`);
