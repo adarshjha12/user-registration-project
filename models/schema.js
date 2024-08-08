@@ -36,13 +36,22 @@ let userSchema = new mongoose.Schema({
         confirmPassword:{
             type: String,
             required: true
-        }
+        },
+        tokens: [{
+            token:{
+                type: String,
+                required: true
+            }
+        }]
 })
 userSchema.methods.generateToken = async function (params) {
     try {
         console.log('id', this.id);
         
         const token = jwt.sign({id: this._id}, 'thisisasecretkeytosecurethewebsite')
+        this.tokens = this.tokens.concat({token: token})
+        console.log(this.tokens);
+        await this.save()
         return token
     } catch (error) {
         console.log(error);
