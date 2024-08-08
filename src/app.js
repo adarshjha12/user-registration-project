@@ -45,6 +45,11 @@ app.post('/register', async (req, res) =>{
                    confirmPassword: req.body.confirmPassword
                 })
                 
+                // calling method to generate token for user1
+                const token = await user1.generateToken()
+                console.log(token);
+                
+
                const userData = await user1.save()
                console.log(userData);
                // console.log(req.body);
