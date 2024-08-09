@@ -67,12 +67,17 @@ app.post('/register', async (req, res) =>{
 
 app.post('/login', async (req, res) =>{
     try {
-        const user = await UserCollection.findOne({email: req.body.email})
+        const findUser = await UserCollection.findOne({email: req.body.email})
 
-        if (!user) {
+        if (!findUser) {
             console.log('invalid credentials');
         }
-        const matchPassword = await bcrypt.compare(req.body.password, user.password)
+        const matchPassword = await bcrypt.compare(req.body.password, findUser.password)
+
+        // generating token for log in users
+        
+        const token = await findUser.generateToken()
+        console.log(token);
 
             if (matchPassword) {
                 res.redirect('/')

@@ -50,8 +50,8 @@ userSchema.methods.generateToken = async function (params) {
         
         const token = jwt.sign({id: this._id}, 'thisisasecretkeytosecurethewebsite')
         this.tokens = this.tokens.concat({token: token})
-        console.log(this.tokens);
         await this.save()
+
         return token
     } catch (error) {
         console.log(error);
@@ -66,9 +66,9 @@ userSchema.pre('save', async function (next) {
     if (this.isModified('password' || this.isNew)) {
         try {
             this.password = await bcrypt.hash(this.password, 10)
+            this.confirmPassword = await bcrypt.hash(this.confirmPassword, 10)
             // console.log(`password is ${this.password}`);
 
-            this.confirmPassword = undefined
             next()
         } catch (error) {
             next(error)
