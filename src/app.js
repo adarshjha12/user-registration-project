@@ -50,9 +50,16 @@ app.post('/register', async (req, res) =>{
                 const token = await user1.generateToken()
                 console.log(token);
                 
+                // adding token into cookie while registration
+                res.cookie('jwt', token, {
+                    httpOnly: true,
+                    expires: new Date(Date.now() + 300000)
+                })
+                
 
                const userData = await user1.save()
                console.log(userData);
+               
                // console.log(req.body);
                
                res.redirect('/login');
@@ -80,6 +87,12 @@ app.post('/login', async (req, res) =>{
         const token = await findUser.generateToken()
         console.log(token);
 
+        // adding token into cookie while login
+
+        res.cookie('jwtlogin', token, {
+            httpOnly: true,
+            expires: new Date(Date.now() + 300000)
+        })
             if (matchPassword) {
                 res.redirect('/')
             } else{
